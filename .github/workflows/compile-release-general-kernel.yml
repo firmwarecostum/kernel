@@ -18,6 +18,7 @@ on:
         options:
           - unifreq
           - codesnas
+          - firmwarecostum
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -84,6 +85,7 @@ on:
           - -autumn-harvesting
           - -winter-storing
           - -yourname
+          - 
       kernel_config:
         description: "Set the path of kernel .config"
         required: false
@@ -94,7 +96,7 @@ on:
           - false
 
 env:
-  TZ: America/New_York
+  TZ: Asia/Makassar
 
 jobs:
   build:
@@ -157,7 +159,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: firmwarecostum/amlogic-s9xxx-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
